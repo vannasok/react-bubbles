@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axiosWithAuth from '../utils/AxiosWithAuth';
+import axios from 'axios';
 
 const Login = ({ history }) => {
    // make a post request to retrieve a token from the api
@@ -12,7 +12,7 @@ const Login = ({ history }) => {
    };
    const handleSubmit = e => {
       e.preventDefault();
-      axiosWithAuth
+      axios
          .post('http://localhost:5000/api/login', creds)
          .then(res => {
             localStorage.setItem('token', res.data.payload);
@@ -25,24 +25,28 @@ const Login = ({ history }) => {
 
    return (
       <>
-         <h3>Log In To Continue</h3>
-         <form className='log-form' onSubmit={handleSubmit}>
-            <input
-               type='text'
-               name='username'
-               placeholder='enter username...'
-               onChange={handleChange}
-               value={creds.username}
-            />
-            <input
-               type='password'
-               name='password'
-               placeholder='enter password...'
-               onChange={handleChange}
-               value={creds.password}
-            />
-            <button type='submit'>Log In</button>
-         </form>
+         <div className='log-page'>
+            <h1>Log In To Continue</h1>
+            <form className='log-form' onSubmit={handleSubmit}>
+               <input
+                  type='text'
+                  name='username'
+                  placeholder='enter username...'
+                  onChange={handleChange}
+                  value={creds.username}
+               />
+               <br />
+               <input
+                  type='password'
+                  name='password'
+                  placeholder='enter password...'
+                  onChange={handleChange}
+                  value={creds.password}
+               />
+               <br />
+               <button type='submit'>Log In</button>
+            </form>
+         </div>
       </>
    );
 };
