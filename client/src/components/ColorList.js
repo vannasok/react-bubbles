@@ -35,6 +35,8 @@ const ColorList = ({ colors, updateColors }) => {
                   }
                })
             );
+            setEditing(false);
+            setColorToEdit(initialColor);
          })
          .catch(err => {
             console.log(' save Edit err', err);
